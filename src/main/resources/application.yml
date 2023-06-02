@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/?currentSchema=notifications
+    username: abarrena0
+    password: abarrena0_tfg
+    driver-class-name: org.postgresql.Driver
+  kafka:
+    bootstrap-servers: localhost:19092
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+jwt:
+  secret: abarrena0_uoc_edu
+  expiration: 86400000
+server:
+  port: 8083
+application:
+  name: notifications-service
+  version: 1.0.0
+  defaultLanguage: en_US
