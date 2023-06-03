@@ -16,7 +16,27 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public Long createNotification(Notification notification) {
+        setNotificationMessage(notification);
         return notificationRepository.save(notification);
+    }
+
+    private void setNotificationMessage(Notification notification) {
+        switch (notification.getType()) {
+            case NEW_RESULT:
+                notification.setMessage("Your search has new results");
+                break;
+            case RESERVATION_PENDING:
+                notification.setMessage("New reservation pending");
+                break;
+            case RESERVATION_CONFIRMED:
+                notification.setMessage("Reservation confirmed");
+                break;
+            case RESERVATION_REJECTED:
+                notification.setMessage("Reservation rejected");
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

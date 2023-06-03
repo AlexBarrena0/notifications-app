@@ -9,7 +9,7 @@ public final class KafkaConstants {
     public static final String SEPARATOR = ".";
 
     // topic items
-    public static final String TRIPS_TOPIC = "trips";
+    public static final String FAVOURITE_SEARCH_TOPIC = "favourite-search";
 
     public static final String BOOKINGS_TOPIC = "bookings";
 

@@ -13,7 +13,7 @@ jwt:
   secret: abarrena0_uoc_edu
   expiration: 86400000
 server:
-  port: 8083
+  port: 8084
 application:
   name: notifications-service
   version: 1.0.0

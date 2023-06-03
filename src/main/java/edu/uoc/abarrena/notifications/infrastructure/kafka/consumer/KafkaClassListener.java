@@ -14,7 +14,10 @@ public class KafkaClassListener {
     }
 
     @KafkaListener(
-            topics = { KafkaConstants.TRIPS_TOPIC, KafkaConstants.BOOKINGS_TOPIC + KafkaConstants.SEPARATOR + KafkaConstants.COMMAND_ADD },
+            topics = {
+                    KafkaConstants.FAVOURITE_SEARCH_TOPIC + KafkaConstants.SEPARATOR + KafkaConstants.COMMAND_ADD,
+                    KafkaConstants.BOOKINGS_TOPIC + KafkaConstants.SEPARATOR + KafkaConstants.COMMAND_ADD
+            },
             groupId = KafkaConstants.GROUP_ID
     )
     public void listen(Notification notification) {
