@@ -32,7 +32,8 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests((auth) -> auth
                         // Booking
-                        .requestMatchers("/**").permitAll()
+                        .requestMatchers("/notifications").hasAnyRole("TRAVELER", "COMPANY")
+                        .requestMatchers("/ws-notifications/**").permitAll()
                 )
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .build();

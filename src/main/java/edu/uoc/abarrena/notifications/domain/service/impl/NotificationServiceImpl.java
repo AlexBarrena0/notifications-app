@@ -2,7 +2,9 @@ package edu.uoc.abarrena.notifications.domain.service.impl;
 
 import edu.uoc.abarrena.notifications.domain.model.Notification;
 import edu.uoc.abarrena.notifications.domain.repository.NotificationRepository;
+import edu.uoc.abarrena.notifications.domain.service.NotificationSender;
 import edu.uoc.abarrena.notifications.domain.service.NotificationService;
+import edu.uoc.abarrena.notifications.infrastructure.websocket.NotificationSenderImpl;
 
 import java.util.List;
 
@@ -10,14 +12,20 @@ public class NotificationServiceImpl implements NotificationService {
 
     private final NotificationRepository notificationRepository;
 
-    public NotificationServiceImpl(NotificationRepository notificationRepository) {
+    private final NotificationSender notificationSender;
+
+    public NotificationServiceImpl(NotificationRepository notificationRepository, NotificationSender notificationSender) {
         this.notificationRepository = notificationRepository;
+        this.notificationSender = notificationSender;
     }
 
     @Override
     public Long createNotification(Notification notification) {
         setNotificationMessage(notification);
-        return notificationRepository.save(notification);
+        Long id = notificationRepository.save(notification);
+        notification.setId(id);
+        notificationSender.notify(notification);
+        return id;
     }
 
     private void setNotificationMessage(Notification notification) {
