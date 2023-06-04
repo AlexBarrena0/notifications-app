@@ -1,11 +1,9 @@
 package edu.uoc.abarrena.notifications.infrastructure.websocket.config;
 
-import edu.uoc.abarrena.notifications.domain.service.NotificationSender;
-import edu.uoc.abarrena.notifications.infrastructure.websocket.NotificationSenderImpl;
+import edu.uoc.abarrena.notifications.infrastructure.websocket.WebSocketSender;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
@@ -25,7 +23,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
 
     @Bean
-    public NotificationSender notificationSender(SimpMessagingTemplate simpMessagingTemplate) {
-        return new NotificationSenderImpl(simpMessagingTemplate);
+    public WebSocketSender webSocketSender(SimpMessagingTemplate simpMessagingTemplate) {
+        return new WebSocketSender(simpMessagingTemplate);
     }
 }

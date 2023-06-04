@@ -8,21 +8,25 @@ public interface NotificationService {
 
     /**
      * Create a new notification
+     *
      * @param notification the notification to create
      * @return the notification id
      */
-    public Long createNotification(Notification notification);
+    Long createNotification(Notification notification);
 
     /**
      * Mark a notification as read
+     *
      * @param notificationId the notification id
      */
-    public void markNotificationAsRead(Long notificationId);
+    void markNotificationAsRead(Long notificationId);
 
     /**
      * Get all notifications by user id
+     *
      * @param userId the user id
+     * @param read   if the notification is read or not
      * @return the list of notifications
      */
-    public List<Notification> getNotificationsByUserId(Long userId);
+    List<Notification> getNotificationsByUserId(Long userId, Boolean read);
 }

@@ -13,4 +13,5 @@ public class NotificationDto {
     private NotificationType type;
     private Long userId;
     private Boolean read;
+    private String url;
 }

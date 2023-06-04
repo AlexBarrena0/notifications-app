@@ -13,4 +13,5 @@ public class NotificationEntity {
     private NotificationType type;
     private Long userId;
     private Boolean read;
+    private String url;
 }

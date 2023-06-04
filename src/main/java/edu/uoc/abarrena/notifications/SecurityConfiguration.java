@@ -8,7 +8,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
-import org.springframework.security.oauth2.jwt.*;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
@@ -31,8 +32,9 @@ public class SecurityConfiguration {
                 .cors()
                 .and()
                 .authorizeHttpRequests((auth) -> auth
-                        // Booking
-                        .requestMatchers("/notifications").hasAnyRole("TRAVELER", "COMPANY")
+                        // Notifications
+                        .requestMatchers(HttpMethod.GET, "/notifications").hasAnyRole("TRAVELER", "COMPANY")
+                        .requestMatchers(HttpMethod.PATCH, "/notifications/**").hasAnyRole("TRAVELER", "COMPANY")
                         .requestMatchers("/ws-notifications/**").permitAll()
                 )
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)

@@ -8,21 +8,25 @@ public interface NotificationRepository {
 
     /**
      * Create a new notification
+     *
      * @param notification the notification to create
      * @return the notification id
      */
-    public Long save(Notification notification);
+    Long save(Notification notification);
 
     /**
      * Mark a notification as read
+     *
      * @param notification the notification to update
      */
-    public void update(Notification notification);
+    void update(Notification notification);
 
     /**
      * Get all notifications by user id
+     *
      * @param userId the user id
+     * @param read   if the notification is read or not
      * @return the list of notifications
      */
-    public List<Notification> findByUserId(Long userId);
+    List<Notification> findByUserId(Long userId, Boolean read);
 }

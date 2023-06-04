@@ -7,6 +7,7 @@ import edu.uoc.abarrena.notifications.infrastructure.repository.mybatis.entity.N
 import edu.uoc.abarrena.notifications.infrastructure.repository.mybatis.mapper.NotificationMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -32,7 +33,10 @@ public class NotificationRepositoryImpl implements NotificationRepository {
     }
 
     @Override
-    public List<Notification> findByUserId(Long userId) {
-        return NotificationConverter.INSTANCE.toDomain(notificationMapper.findByUserId(userId));
+    public List<Notification> findByUserId(Long userId, Boolean read) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("userId", userId);
+        params.put("read", read);
+        return NotificationConverter.INSTANCE.toDomain(notificationMapper.findByUserId(params));
     }
 }

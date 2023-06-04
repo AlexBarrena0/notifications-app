@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface NotificationConverter {
 
-    public static final NotificationConverter INSTANCE = Mappers.getMapper(NotificationConverter.class);
+    NotificationConverter INSTANCE = Mappers.getMapper(NotificationConverter.class);
 
     NotificationEntity toEntity(Notification notification);
 
