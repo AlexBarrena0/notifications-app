@@ -1,11 +1,11 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/?currentSchema=notifications
+    url: jdbc:postgresql://db:5432/?currentSchema=notifications
     username: abarrena0
     password: abarrena0_tfg
     driver-class-name: org.postgresql.Driver
   kafka:
-    bootstrap-servers: localhost:19092
+    bootstrap-servers: kafka:29092
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
